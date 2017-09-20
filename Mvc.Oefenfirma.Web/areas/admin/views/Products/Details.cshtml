@@ -1,0 +1,77 @@
+﻿@using Mvc.Oefenfirma.Web.Models
+@model Mvc.OefenfirmaCMS.Lib.Entities.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<hr />
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4>Product: @Html.DisplayFor(model => model.ProductName)</h4>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductCode)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.CatName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Category.CatName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UrlImage)
+            </dt>
+
+            <dd>
+                @*@Html.Image("@Url.Content(Model.UrlImage)", "Image", "200");*@
+                <img src="@Url.Content(Model.UrlImage)" alt="Image" width="200" />
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Spotlight)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Spotlight)
+            </dd>
+        </dl>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Mvc.OefenfirmaCMS.Lib.Entities.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Overzicht Producten</h2>
+@if (TempData["Success"] != null)
+{
+    var tempval = TempData["Success"];
+    if (tempval.ToString() == "Nope")
+    {
+        <div class="alert alert-danger alert-dismissable fade in" id="flopMessage">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            Dit product bestaat niet
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success alert-dismissable fade in" id="successMessage">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            @TempData["Success"]!
+        </div>
+    }
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Spotlight)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td nowrap>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @if (item.UrlImage != null)
+            {
+                <img src="@Url.Content(item.UrlImage)" alt="Image" width="100" />
+            }
+        </td>
+        <td class="center-text">
+            @Html.DisplayFor(modelItem => item.Spotlight)
+        </td>
+        <td>
+            <button type="button" class="btn btn-default btn-lg" aria-label="Details" title="Details" onclick="location.href='@Url.Action("Details", new { id=item.ProductId})'">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-default btn-lg" aria-label="Edit" title="Edit" onclick="location.href='@Url.Action("Edit", new { id=item.ProductId})'">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-default btn-lg" aria-label="Delete" title="Delete" onclick="location.href='@Url.Action("Delete", new { id=item.ProductId})'">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </button>
+        </td>
+    </tr>
+}
+</table>
+<p>
+    @Html.ActionLink("Back to Admin Area", "Index", "Admin")
+</p>

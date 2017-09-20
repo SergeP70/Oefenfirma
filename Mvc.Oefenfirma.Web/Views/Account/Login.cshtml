@@ -1,0 +1,41 @@
+﻿@model Mvc.Oefenfirma.Web.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<div>@Html.ValidationSummary(true)</div>
+<p>
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend>Login Gegevens: </legend>
+            <div class="editor-label">
+                @Html.LabelFor(m => m.UserName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(model => model.UserName)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(m => m.Password)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+
+            <div class="editor-field">
+                @Html.CheckBoxFor(m => m.RememberMe) Onthou mij!
+            </div>
+            <div>
+                <input type="submit" value="Aanmelden" />
+            </div>
+        </fieldset>
+    }
+</p>
+
+
+

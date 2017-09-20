@@ -1,0 +1,82 @@
+﻿@model Mvc.OefenfirmaCMS.Lib.Entities.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<hr />
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4>Product: @Html.DisplayFor(model => model.ProductName)</h4>
+        @using (Html.BeginForm("AddToCart", "Cart"))
+        {
+            <div class="pull-right">
+                @Html.HiddenFor(model => model.ProductId)
+                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                <input id="AddToCart" type="submit" class="btn btn-success" value="Add to Cart" />
+            </div>
+        }
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductCode)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.CatName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Category.CatName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UrlImage)
+            </dt>
+
+            <dd>
+                <img src="@Url.Content(Model.UrlImage)" alt="Image" width="200" />
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Spotlight)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Spotlight)
+
+            </dd>
+        </dl>
+
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Naar de Productenlijst", "Index")
+</p>

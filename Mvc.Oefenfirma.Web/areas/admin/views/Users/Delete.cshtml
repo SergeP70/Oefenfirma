@@ -1,0 +1,77 @@
+﻿@model Mvc.OefenfirmaCMS.Lib.Entities.User
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<hr />
+<h3 class="text-danger">Bent u zeker dat u deze gebruiker wilt verwijderen?</h3>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4>Gebruiker: @Html.DisplayFor(model => model.UserName)</h4>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UserPassword)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UserPassword)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ConfirmPassword)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ConfirmPassword)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UserEmail)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Birthday)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Birthday)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+
+    </div>
+</div>

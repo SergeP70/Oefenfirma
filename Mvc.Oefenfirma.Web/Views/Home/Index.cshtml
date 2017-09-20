@@ -1,0 +1,60 @@
+﻿@model List<Mvc.OefenfirmaCMS.Lib.Entities.Product>
+<!-- model Mvc.OefenfirmaCMS.Lib.Entities.Product -->
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Welkom bij IVO Oefenfirma</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Introductie</h4>
+    </div>
+    <div class="panel-body">
+        <p>IVOBytes is een fictieve oefenfirma van CVO IVO Brugge die het levenslicht zag in januari 2014.</p>
+        <p> Ons bedrijf levert hardware en software aan zowel bedrijven als particulieren. Met onze expertise in computerhardware en burotica aan uw zijde bent u verzekerd van een professionele ICT infrastructuur. Wanneer u kiest voor onze hoogwaardige ICT producten verhoogt u niet alleen de productiviteit van uw werknemers, maar ook de verwerkingstijd van uw cruciale bedrijfsprocessen.</p>
+        <p>Behalve onze nauwkeurig geselecteerde hardware leveren we ook bijbehorende kantoorsoftware, multimedia en toepassingen voor entertainment. Wenst u software op maat? Ook dat kan! Stuur ons uw vereisten en wij maken voor u een passende offerte.</p>
+
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Producten in de spotlight</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <tr class="info">
+                <th>ProductName</th>
+                <th>ProductCode</th>
+                <th>ProductDescription</th>
+                <th>Price</th>
+                <th>Image</th>
+            </tr>
+            @foreach (var prod in Model)
+            {
+                <tr onclick="location.href = '@(Url.Action("Details", "Product", new { id=prod.ProductId }))'">
+                    <td>@prod.ProductName</td>
+                    <td>@prod.ProductCode</td>
+                    <td>@prod.Description</td>
+                    <td><p>€ @prod.Price</p></td>
+                    <td><img src="@Url.Content(prod.UrlImage)" alt="Image" width="100" /></td>
+                </tr>
+            }
+        </table>
+        </div>
+    </div>
+
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title">Disclaimer</h3>
+            </div>
+            <div class="panel-body">
+                <p>IVOBytes is een fictief oefenbedrijf dat gekaderd wordt binnen de stageactiviteiten van opleidingen gegeven binnen het CVO IVO Brugge. Het bedrijf wordt beheerd en bestuurd door en voor cursisten. Alle goederen, transacties en communicatie via de firma IVOBytes zijn puur fictief en niet rechtsgeldig. Overeenkomsten met bestaande firma’s of geregistreerde merknamen zijn niet intentioneel, geen reclame en hebben louter educatieve doeleinden.</p>
+                <p>Alle communicatie met de oefenfirma dient te gebeuren per elektronische post: e-mail: info.ivobytes@gmail.com</p>
+            </div>
+        </div>
+
+        <p></p>
+
+

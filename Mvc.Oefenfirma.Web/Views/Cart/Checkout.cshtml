@@ -1,0 +1,51 @@
+﻿@model Mvc.OefenfirmaCMS.Lib.Entities.User
+
+@{
+    ViewBag.Title = "Oefenfirma: Checkout";
+}
+
+<h2>Check out now</h2>
+<p>Please enter your details, and we'll ship your goods right away!</p>
+@using (Html.BeginForm())
+{
+    <h3>Ship to</h3>
+    <div class="form-group">
+        <label>Voornaam:</label>
+        @Html.TextBoxFor(x => x.Relation.RelFirstName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Familienaam:</label>
+        @Html.TextBoxFor(x => x.Relation.RelName, new { @class = "form-control" })
+    </div>
+    <h3>Address</h3>
+    <div class="form-group">
+        <label>Adres:</label>
+        @Html.TextBoxFor(x => x.Relation.RelAdress, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Adres lijn 2:</label>
+        <input class="form-control" id="Adreslijn2" name="Adreslijn2" value="" type="text">
+    </div>
+    <div class="form-group">
+        <label>Postcode:</label>
+        @Html.TextBoxFor(x => x.Relation.RelPost, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Gemeente:</label>
+        @Html.TextBoxFor(x => x.Relation.RelGemeente, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Mobiel:</label>
+        @Html.TextBoxFor(x => x.Relation.RelPhone, new { @class = "form-control" })
+    </div>
+    <h3>Options</h3>
+    <div class="checkbox">
+        <label>
+            @*@Html.EditorFor(x => x.GiftWrap)*@
+            Gift wrap these items
+        </label>
+    </div>
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Complete order" />
+    </div>
+}

@@ -1,0 +1,41 @@
+﻿@model Mvc.OefenfirmaCMS.Lib.Entities.Relationship
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3 class="text-danger">Bent u zeker dat u deze Verwantschap wilt verwijderen?</h3>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4>Verwantschap: @Html.DisplayFor(model => model.Description)</h4>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RelationshipId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.RelationshipId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+    </div>
+    <hr />
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,84 @@
+﻿@model Mvc.OefenfirmaCMS.Lib.Entities.Relation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<hr />
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4>Relatie: @Html.DisplayFor(model => model.RelFirstName) @Html.DisplayFor(model => model.RelName)</h4>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RelName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RelName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RelFirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RelFirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RelAdress)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RelAdress)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RelPost)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RelPost)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RelGemeente)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RelGemeente)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RelPhone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RelPhone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RelEmail)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RelEmail)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Relationship.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Relationship.Description)
+            </dd>
+        </dl>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RelationId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

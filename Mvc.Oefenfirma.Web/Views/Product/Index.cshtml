@@ -1,0 +1,84 @@
+﻿@model Mvc.Oefenfirma.Web.Models.ProductListIndexVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Overzicht Producten</h2>
+@if (TempData["Success"] != null)
+{
+    var tempval = TempData["Success"];
+    if (tempval.ToString() == "Nope")
+    {
+        <div class="alert alert-danger alert-dismissable fade in" id="flopMessage">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            Dit product bestaat niet
+        </div>
+    }
+}
+
+<div class="row panel">
+    <div id="categories" class="col-xs-3">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                Selecteer een categorie
+            </div>
+            <div class="panel-body">
+                @Html.Action("Menu", "Cat")
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-9">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Overzicht Producten
+            </div>
+
+            <div class="panel-body">
+                <table class="table table-hover">
+                    @foreach (var item in Model.ProductList)
+                    {
+                        <tr onclick="location.href = '@(Url.Action("Details", new { id=item.ProductId}))'">
+                            <td>
+                                @if (item.UrlImage != null)
+                                {
+                                    <img src="@Url.Content(item.UrlImage)" alt="Image" width="125" />
+                                }
+                            </td>
+                            <td>
+                                <span class="lead">@Html.DisplayFor(modelItem => item.ProductName)</span>
+                                <h6>(@Html.DisplayFor(modelItem => item.ProductCode))</h6>
+                                <span>@Html.DisplayFor(modelItem => item.Description)</span>
+                            </td>
+                            <td>
+                                <h3>
+                                    <span class="label label-primary pull-right">
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </span>
+                                </h3>
+                                @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { enctype = "multipart/form-data"}))
+                                {
+                                    <div class="pull-right" >
+                                        @Html.Hidden("productId", item.ProductId)
+                                        @*@Html.HiddenFor(modelItem => item.ProductId, new { name="ProductId", id="ProductId" })*@
+                                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                        <input id="AddToCart" type="submit" class="btn btn-success" value="Add to Cart" />
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <div class="btn-group pull-right">
+                    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x, category = Model.CurrentCategory }))
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Terug naar HomePage", "Index", "Home")
+</p>
+

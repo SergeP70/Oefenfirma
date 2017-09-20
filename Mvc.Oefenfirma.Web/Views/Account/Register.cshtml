@@ -1,0 +1,67 @@
+﻿@model ContactFormVM
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Registratie</h2>
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissable fade in" id="successMessage">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        @TempData["Success"]!
+    </div>
+}
+<p>U kunt zich aanmelden voor een login van onze topsite via onderstaand inschrijfformulier.</p>
+<p> Inschrijven is vrijblijvend tot ná het persoonlijk intake gesprek. Na aanmelding ontvangt u een bevestiging. Vervolgens nemen wij persoonlijk contact met u op. Heeft u nog vragen of heeft u hulp nodig bij de inschrijving? Onze medewerkers helpen u graag. U kunt ons op werkdagen bereiken via telefoonnummer: 050 500500 of info@hobit.be</p>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(e => e.RelName, new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8">
+                @Html.TextBoxFor(e => e.RelName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(e => e.RelName)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(e => e.RelFirstName, new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8">
+                @Html.TextBoxFor(e => e.RelFirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(e => e.RelFirstName)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(e => e.RelEmail, new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8">
+                @Html.TextBoxFor(e => e.RelEmail, new { @class = "form-control" })
+                @Html.ValidationMessageFor(e => e.RelEmail)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(e => e.RelPhone, new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8">
+                @Html.TextBoxFor(e => e.RelPhone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(e => e.RelPhone)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class = "control-label col-sm-4">Waarom wenst u zich in te schrijven</label>
+            <div class="col-sm-8">
+                @Html.TextAreaFor(e => e.Message, new { @class = "form-control", @rows = 10 })
+                @Html.ValidationMessageFor(e => e.Message)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <button type="submit" class="btn btn-primary" name="btnSubmitForm">Registratie Aanvraag</button>
+            </div>
+        </div>
+    </div>
+}
+
+

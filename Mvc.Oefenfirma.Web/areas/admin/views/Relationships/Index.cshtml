@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Mvc.OefenfirmaCMS.Lib.Entities.Relationship>
+
+@{
+    ViewBag.Title = "Index";
+    var tempVal = TempData["Success"];
+}
+
+<h2>Overzicht verwantschap</h2>
+
+@if (tempVal != null)
+{
+    switch (tempVal.ToString())
+    {
+        case "Nope":
+            <div class="alert alert-danger alert-dismissable fade in" id="flopMessage">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                Deze verwantschap bestaat niet
+            </div>
+            break;
+        case "Allready":
+            <div class="alert alert-danger alert-dismissable fade in" id="flopMessage">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                Deze ID bestaat al, kies een andere letter
+            </div>
+            break;
+        case "Succes":
+            <div class="alert alert-success alert-dismissable fade in" id="successMessage">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                Het verwantschap werd succesvol aangemaakt
+            </div>
+            break;
+        case "Weg":
+            <div class="alert alert-success alert-dismissable fade in" id="successMessage">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                Het verwantschap werd succesvol verwijderd
+            </div>
+            break;
+        case "Wijzig":
+            <div class="alert alert-success alert-dismissable fade in" id="successMessage">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                Het verwantschap werd succesvol gewijzigd
+            </div>
+                break;
+        case "Kannie":
+            <div class="alert alert-danger alert-dismissable fade in" id="flopMessage">
+                <a href = "#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                Deze verwantschap kan niet verwijderd worden<br />
+                Er zijn nog relaties met deze verwantschap.Wijzig of verwijder deze relatie(s)
+            </div>
+            break;
+        default:
+            <div></div>
+            break;
+    }
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4>Overzicht Verwantschappen</h4>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.RelationshipId)</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.RelationshipId)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default" aria-label="Details" title="Details" onclick="location.href='@Url.Action("Details", new { id=item.RelationshipId})'">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default" aria-label="Edit" title="Edit" onclick="location.href='@Url.Action("Edit", new { id=item.RelationshipId})'">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default" aria-label="Delete" title="Delete" onclick="location.href='@Url.Action("Delete", new { id=item.RelationshipId})'">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Back to Admin Area", "Index", "Admin")
+</p>
+

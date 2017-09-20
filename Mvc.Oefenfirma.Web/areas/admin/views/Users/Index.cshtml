@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Mvc.OefenfirmaCMS.Lib.Entities.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Overzicht van de users</h2>
+@if (TempData["Success"] != null)
+{
+    var tempval = TempData["Success"];
+    if (tempval.ToString() == "Nope")
+    {
+        <div class="alert alert-danger alert-dismissable fade in" id="flopMessage">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            Deze gebruiker bestaat niet
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success alert-dismissable fade in" id="successMessage">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            @TempData["Success"]!
+        </div>
+    }
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4>Overzicht van de gebruikers</h4>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserEmail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Birthday)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Birthday)
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default" aria-label="Details" title="Details" onclick="location.href='@Url.Action("Details", new { id=item.UserId})'">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default" aria-label="Edit" title="Edit" onclick="location.href='@Url.Action("Edit", new { id=item.UserId})'">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default" aria-label="Delete" title="Delete" onclick="location.href='@Url.Action("Delete", new { id=item.UserId})'">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Back to Admin Area", "Index", "Admin")
+</p>

@@ -1,0 +1,226 @@
+﻿/*
+    COLOR PALLETTES
+    ===============
+    Green: #92b558 
+    Darkgreen: #617c36
+    Lightgreen: #f3f7ed
+    Blue: #91A8D0
+    Lightblue: #dbe3f0 // eef1f7
+    Darkred: #B91228
+
+    Trends 2017= http://www.pantone.com/color-of-the-year-2017
+
+*/
+
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 380px;
+}
+
+#Id {
+    max-width: 180px;
+    float: right;
+    margin: 0 0 10px 10px;
+}
+
+/* Put my checkbox aligned normal */
+input[type="checkbox"] {
+    margin-left: 0px !important;
+
+}
+
+
+.jumbotron {
+    padding-left: 40px;
+}
+
+footer{
+    background-color: #F5F5F5;
+    padding : 10px 0 10px 30px;
+}
+
+td p{
+    white-space: nowrap;
+}
+
+#AddToCart {
+    margin-top: 15px;
+
+}
+
+
+/******************************************
+    KNOPPEN ADMIN PAGINA
+*******************************************/
+.myButton {
+    margin: 40px 20px 0px 20px;
+	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #a5cc52));
+	background:-moz-linear-gradient(top, #b8e356 5%, #a5cc52 100%);
+	background:-webkit-linear-gradient(top, #b8e356 5%, #a5cc52 100%);
+	background:-o-linear-gradient(top, #b8e356 5%, #a5cc52 100%);
+	/*background:-ms-linear-gradient(top, #b8e356 5%, #a5cc52 100%);*/
+	background:linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356', endColorstr='#a5cc52',GradientType=0);
+	background-color:#b8e356;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #83c41a;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Verdana;
+	font-size:28px;
+	font-weight:bold;
+	padding:20px 48px;
+	text-decoration:none;
+	text-shadow:3px 5px 2px #86ae47;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #a5cc52), color-stop(1, #b8e356));
+	background:-moz-linear-gradient(top, #a5cc52 5%, #b8e356 100%);
+	background:-webkit-linear-gradient(top, #a5cc52 5%, #b8e356 100%);
+	background:-o-linear-gradient(top, #a5cc52 5%, #b8e356 100%);
+	/*background:-ms-linear-gradient(top, #a5cc52 5%, #b8e356 100%);*/
+	background:linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a5cc52', endColorstr='#b8e356',GradientType=0);
+	background-color:#a5cc52;
+  	text-decoration:none;
+
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.center-text {
+    text-align:center;
+}
+
+/**********************************
+    PRODUCTS / CREATE
+***********************************/
+
+input #UploadImage.form-control {
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+input.form-fixer {
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+
+/*********************************
+    CART
+**********************************/
+#cartTable td {
+    vertical-align: middle;
+}
+
+.navbar-default .navbar-brand {
+    color: #eef1f7;
+}
+
+
+/* TO DO ***************************
+  .navbar-default {
+  background-image: none;
+  background-color: #92b558;
+  border-color: #b91228;
+}
+.navbar-default .navbar-brand {
+  color: #eef1f7;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ecdbff;
+}
+.navbar-default .navbar-text {
+  color: #eef1f7;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #eef1f7;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ecdbff;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #ecdbff;
+  background-color: #b91228;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ecdbff;
+  background-color: #b91228;
+}
+.navbar-default .navbar-toggle {
+  border-color: #b91228;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #b91228;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #eef1f7;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #eef1f7;
+}
+.navbar-default .navbar-link {
+  color: #eef1f7;
+}
+.navbar-default .navbar-link:hover {
+  color: #ecdbff;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #eef1f7;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ecdbff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ecdbff;
+    background-color: #b91228;
+  }
+}*/
+
+

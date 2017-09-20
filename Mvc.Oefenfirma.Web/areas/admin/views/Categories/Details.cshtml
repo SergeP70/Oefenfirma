@@ -1,0 +1,45 @@
+﻿@model Mvc.OefenfirmaCMS.Lib.Entities.Category
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<hr />
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4>Categorie: @Html.DisplayFor(model => model.CatName)</h4>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CatName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CatName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ParentCat)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ParentCatObj.CatName)
+            </dd>
+        </dl>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CatId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

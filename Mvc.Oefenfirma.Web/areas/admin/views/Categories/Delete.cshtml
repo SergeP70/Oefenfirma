@@ -1,0 +1,51 @@
+﻿@model Mvc.OefenfirmaCMS.Lib.Entities.Category
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<hr />
+
+<h3 class="text-danger">Bent u zeker dat u deze categorie wilt verwijderen?</h3>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4>Categorie: @Html.DisplayFor(model => model.CatName)</h4>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CatName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CatName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ParentCat)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ParentCatObj.CatName)
+            </dd>
+        </dl>
+    </div>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
