@@ -8,10 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using Mvc.OefenfirmaCMS.Lib.Data;
 using Mvc.OefenfirmaCMS.Lib.Entities;
+using System.Web.Security;
 
 namespace Mvc.Oefenfirma.Web.Areas.Admin.Controllers
 {
-    [Authorize()]
+    [Authorize(Roles="Administrator")]
     public class UsersController : Controller
     {
         private OefenfirmaContext db = new OefenfirmaContext();
@@ -49,10 +50,11 @@ namespace Mvc.Oefenfirma.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,UserName,UserPassword,ConfirmPassword,UserEmail,Phone,Birthday")] User user)
+        public ActionResult Create([Bind(Include = "UserId,UserName,UserPassword,UserFirstName,UserLastName,UserAddress,UserPost,UserGemeente,UserEmail,UserPhone,Birthday")] User user)
         {
             if (ModelState.IsValid)
             {
+                user.PasswordHash = FormsAuthentication.HashPasswordForStoringInConfigFile(user.UserPassword, "md5");
                 db.Users.Add(user);
                 db.SaveChanges();
                 // Gebruik van Tempdata om Indexpagina te voorzien met een melding wanneer gebruiker aangemaakt werd.
@@ -88,6 +90,7 @@ namespace Mvc.Oefenfirma.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.PasswordHash = FormsAuthentication.HashPasswordForStoringInConfigFile(user.UserPassword, "md5");
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["Success"] = "De gebruiker werd succesvol gewijzigd";

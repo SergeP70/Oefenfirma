@@ -82,6 +82,6 @@
     </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Edit", "Users", new { id = Model.UserId })" class="btn btn-success"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>
+    <a href="@Url.Action("Index", "Users")" class="btn btn-info"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Back to List</a>
 </p>
