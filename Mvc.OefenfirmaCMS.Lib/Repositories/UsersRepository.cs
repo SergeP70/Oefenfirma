@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Security;
 
-namespace Voorbeeld.LoginMetRoles.Lib.Repositories
+namespace Mvc.OefenfirmaCMS.Lib.Repositories
 {
     /// <summary>
     /// Repository klasse die communicatie met databron regelt. 

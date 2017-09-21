@@ -2,6 +2,7 @@
 using Mvc.Oefenfirma.Web.ViewModels;
 using Mvc.OefenfirmaCMS.Lib.Data;
 using Mvc.OefenfirmaCMS.Lib.Entities;
+using Mvc.OefenfirmaCMS.Lib.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,15 @@ namespace Mvc.Oefenfirma.Web.Controllers
 {
     public class AccountController : Controller
     {
+        UsersRepository usersRepository;
+
+        public AccountController()
+        {
+            OefenfirmaContext context = new OefenfirmaContext();
+            usersRepository = new UsersRepository(context); 
+        }
+
+
         // GET: Account
         public ActionResult Index()
         {
@@ -33,21 +43,39 @@ namespace Mvc.Oefenfirma.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                OefenfirmaContext c = new OefenfirmaContext();
-                List<User> users = c.Users.ToList();
+                User loggedInUser = usersRepository.GetUserByUsernameAndPassword(model.UserName, model.Password);
 
                 // geldige credentials??
-                // Zoek of de UserName voorkomt in de OefenfirmaContext.Users
-                // Indien ja: controleer zijn paswoord
-                int index = users.FindIndex(f => f.UserName.ToUpper() == model.UserName.ToUpper());
-                if ((index >= 0) && (model.Password == users[index].UserPassword))
+                if (loggedInUser != null)
                 {
-                    //inloggen door een authenticatie cookie te plaatsen op client, met de UserName
-                    FormsAuthentication.SetAuthCookie(users[index].UserName, model.RememberMe);
+                    // Geldige credentials, inloggen maar !!
+                    // alle roles voor de huidige gebruiker ophalen
+                    IEnumerable<string> roleNames = loggedInUser.Roles.Select<Role, string>(r => r.RoleName);
+                    string rolesString = string.Join(";", roleNames.ToArray());
+
+                    //We maken onze eigen ticket aan zodat ook de roles bewaard kunnen worden!
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                        1,
+                        loggedInUser.UserName,
+                        DateTime.Now,
+                        DateTime.Now.AddMinutes(FormsAuthentication.Timeout.TotalMinutes),
+                        model.RememberMe,
+                        rolesString);
+
+                    //ticket encrypteren en in cookie zetten
+                    string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+                    var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                    Response.Cookies.Add(authCookie);
 
                     //redirect naar homepage
-                    //return RedirectToAction("Index", "Home");
-                    return RedirectToAction("Index", "Admin", new { area = "Admin" });
+                    if (roleNames.Contains("Administrator"))
+                    {
+                        return RedirectToAction("Index", "Admin", new { area = "Admin" });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Product");
+                    }
                     //@Html.ActionLink("Admin Area", "Index", "Admin", new { area = "Admin" }, htmlAttributes: new { title = "Manage" })
                 }
                 else

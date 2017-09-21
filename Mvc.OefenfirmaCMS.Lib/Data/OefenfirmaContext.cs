@@ -16,8 +16,6 @@ namespace Mvc.OefenfirmaCMS.Lib.Data
         public DbSet<Relation> Relations { get; set; }
         public DbSet<Role> Roles { get; set; }
 
-
-
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)  => Fluent laat ik vallen voorlopig
         //{
         //    // Configure domain classes using modelbuider:

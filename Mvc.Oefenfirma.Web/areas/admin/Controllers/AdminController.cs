@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Mvc.Oefenfirma.Web.Areas.Admin.Controllers
 {
-    [Authorize()]
+    [Authorize(Roles ="Administrator")]
     public class AdminController : Controller
     {
         // GET: Admin/Admin
