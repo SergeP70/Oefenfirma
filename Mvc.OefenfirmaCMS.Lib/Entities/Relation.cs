@@ -44,15 +44,15 @@ namespace Mvc.OefenfirmaCMS.Lib.Entities
         [StringLength(128, ErrorMessage = "Het {0} mag maximum 30 karakters lang zijn", MinimumLength = 5)]
         public string RelEmail { get; set; }
 
-        [Display(Name = "Verwantschap")]
-        public string RelationshipId { get; set; }
-        [Display(Name = "Verwantschap")]
-        public Relationship Relationship { get; set; }
+        //[Display(Name = "Verwantschap")]
+        //public string RelationshipId { get; set; }
+        //[Display(Name = "Verwantschap")]
+        //public Relationship Relationship { get; set; }
 
         // Link tussen Relations en Users 
         // ALS een User == klant kunnen we desbetreffende info opvragen. 
         // public int? UserId { get; set; }
-        public List<User> Users { get; set; }
+        //public List<User> Users { get; set; }
         
     }
 }

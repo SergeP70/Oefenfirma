@@ -53,7 +53,7 @@ namespace Mvc.Oefenfirma.Web.Controllers
 
         public ViewResult Checkout(int? userId)
         {
-            User user = db.Users.Include(u => u.Relation).FirstOrDefault(u => u.UserId == userId);
+            User user = db.Users.FirstOrDefault(u => u.UserId == userId);
             return View(user);
         }
     }

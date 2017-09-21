@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,58 +64,30 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Relation.cs" />
-    <Compile Include="Entities\Relationship.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Migrations\201709191552086_AddingRoles.cs" />
-    <Compile Include="Migrations\201709191552086_AddingRoles.Designer.cs">
-      <DependentUpon>201709191552086_AddingRoles.cs</DependentUpon>
+    <Compile Include="Migrations\201709201220382_UsersRemoveConfirmPassword.cs" />
+    <Compile Include="Migrations\201709201220382_UsersRemoveConfirmPassword.Designer.cs">
+      <DependentUpon>201709201220382_UsersRemoveConfirmPassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709192023013_RemoveManyToMany.cs" />
-    <Compile Include="Migrations\201709192023013_RemoveManyToMany.Designer.cs">
-      <DependentUpon>201709192023013_RemoveManyToMany.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709192027596_RemoveRolesOutSQL.cs" />
-    <Compile Include="Migrations\201709192027596_RemoveRolesOutSQL.Designer.cs">
-      <DependentUpon>201709192027596_RemoveRolesOutSQL.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709192029284_AddRolesToSQL.cs" />
-    <Compile Include="Migrations\201709192029284_AddRolesToSQL.Designer.cs">
-      <DependentUpon>201709192029284_AddRolesToSQL.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709192030586_SeedingRoles.cs" />
-    <Compile Include="Migrations\201709192030586_SeedingRoles.Designer.cs">
-      <DependentUpon>201709192030586_SeedingRoles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709192035391_UserRoles.cs" />
-    <Compile Include="Migrations\201709192035391_UserRoles.Designer.cs">
-      <DependentUpon>201709192035391_UserRoles.cs</DependentUpon>
+    <Compile Include="Migrations\201709201326375_UsersChangeAddressName.cs" />
+    <Compile Include="Migrations\201709201326375_UsersChangeAddressName.Designer.cs">
+      <DependentUpon>201709201326375_UsersChangeAddressName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\UsersRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709191552086_AddingRoles.resx">
-      <DependentUpon>201709191552086_AddingRoles.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709201220382_UsersRemoveConfirmPassword.resx">
+      <DependentUpon>201709201220382_UsersRemoveConfirmPassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709192023013_RemoveManyToMany.resx">
-      <DependentUpon>201709192023013_RemoveManyToMany.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709192027596_RemoveRolesOutSQL.resx">
-      <DependentUpon>201709192027596_RemoveRolesOutSQL.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709192029284_AddRolesToSQL.resx">
-      <DependentUpon>201709192029284_AddRolesToSQL.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709192030586_SeedingRoles.resx">
-      <DependentUpon>201709192030586_SeedingRoles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709192035391_UserRoles.resx">
-      <DependentUpon>201709192035391_UserRoles.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709201326375_UsersChangeAddressName.resx">
+      <DependentUpon>201709201326375_UsersChangeAddressName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

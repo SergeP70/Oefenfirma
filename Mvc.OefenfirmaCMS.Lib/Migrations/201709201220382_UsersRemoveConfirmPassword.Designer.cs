@@ -7,13 +7,13 @@ namespace Mvc.OefenfirmaCMS.Lib.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class SeedingRoles : IMigrationMetadata
+    public sealed partial class UsersRemoveConfirmPassword : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedingRoles));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UsersRemoveConfirmPassword));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709192030586_SeedingRoles"; }
+            get { return "201709201220382_UsersRemoveConfirmPassword"; }
         }
         
         string IMigrationMetadata.Source

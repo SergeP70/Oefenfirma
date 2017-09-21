@@ -84,7 +84,7 @@ namespace Mvc.Oefenfirma.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,UserName,UserPassword,ConfirmPassword,UserEmail,Phone,Birthday")] User user)
+        public ActionResult Edit([Bind(Include = "UserId,UserName,UserPassword,UserEmail,UserLastName,UserFirstName,UserAddress,UserPost,UserGemeente,UserPhone,Birthday")] User user)
         {
             if (ModelState.IsValid)
             {

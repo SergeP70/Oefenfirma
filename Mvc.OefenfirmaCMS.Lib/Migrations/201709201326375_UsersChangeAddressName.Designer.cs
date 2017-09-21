@@ -7,13 +7,13 @@ namespace Mvc.OefenfirmaCMS.Lib.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddRolesToSQL : IMigrationMetadata
+    public sealed partial class UsersChangeAddressName : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddRolesToSQL));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UsersChangeAddressName));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709192029284_AddRolesToSQL"; }
+            get { return "201709201326375_UsersChangeAddressName"; }
         }
         
         string IMigrationMetadata.Source

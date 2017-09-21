@@ -9,12 +9,9 @@
             @*<li>
                     @Html.ActionLink("Hello " + User.Identity.Name, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                 </li>*@
-            @if (this.User.IsInRole("Administrator"))
-            {
-                <li>
+            <li>
                     @Html.ActionLink("Admin Area", "Index", "Admin", new { area = "Admin" }, htmlAttributes: new { title = "Manage" })
                 </li>
-            }
             <li>
                 @Html.ActionLink("Afmelden", "Logout", "Account", new { area = "" }, null)
             </li>

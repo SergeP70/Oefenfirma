@@ -26,10 +26,10 @@ namespace Mvc.OefenfirmaCMS.Lib.Entities
 
         public string PasswordHash { get; set; }
 
-        [Display(Name = "Bevestig paswoord")]
-        [DataType(DataType.Password)]
-        [Compare("UserPassword", ErrorMessage = "De bevestiging komt niet overeen met het paswoord")]
-        public string ConfirmPassword { get; set; }
+        //[Display(Name = "Bevestig paswoord")]
+        //[DataType(DataType.Password)]
+        //[Compare("UserPassword", ErrorMessage = "De bevestiging komt niet overeen met het paswoord")]
+        //public string ConfirmPassword { get; set; }
 
         [Display(Name = "E-mailadres")]
         [DataType(DataType.EmailAddress)]
@@ -37,11 +37,32 @@ namespace Mvc.OefenfirmaCMS.Lib.Entities
         [StringLength(128, ErrorMessage = "Het {0} mag maximum 30 karakters lang zijn", MinimumLength = 5)]
         public string UserEmail { get; set; }
 
-        [Display(Name ="TEL / GSM")]
+        [Display(Name = "Familienaam")]
+        [StringLength(30, ErrorMessage = "De {0} moet tussen 2 en 30 karakters lang zijn", MinimumLength = 2)]
+        public string UserLastName { get; set; }
+
+        [Display(Name = "Voornaam")]
+        [StringLength(30, ErrorMessage = "De {0} moet tussen 2 en 30 karakters lang zijn", MinimumLength = 2)]
+        public string UserFirstName { get; set; }
+
+        [Display(Name = "Adres")]
+        [StringLength(100, ErrorMessage = "Het {0} mag maximum 100 karakters lang zijn")]
+        public string UserAddress { get; set; }
+
+        [Display(Name = "Postnummer")]
+        [Range(1000, 9999, ErrorMessage = "Postnummer ligt tussen 1000 en 9999")]
+        [RegularExpression(@"^[1-9]{1}[0-9]{3}$", ErrorMessage = "Postnummer is niet geldig")]
+        public int UserPost { get; set; }
+
+        [Display(Name = "Gemeente")]
+        [StringLength(50, ErrorMessage = "De {0} mag maximum 50 karakters lang zijn")]
+        public string UserGemeente { get; set; }
+
+        [Display(Name = "TEL/GSM")]
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^(\+[0-9@\s]{2,3})?[0-9]{3,4}([\/\-@\s])?[0-9]{6}$", ErrorMessage = "Ingegeven nummer is niet geldig")]
         [StringLength(32)]
-        public string Phone { get; set; }
+        public string UserPhone { get; set; }
 
         [Display(Name = "Geboortedatum")]
         [DataType(DataType.Date)]
@@ -50,8 +71,5 @@ namespace Mvc.OefenfirmaCMS.Lib.Entities
 
         public ICollection<Role> Roles { get; set; }
         
-        public int? RelationId { get; set; }
-        public Relation Relation { get; set; }
-
     }
 }

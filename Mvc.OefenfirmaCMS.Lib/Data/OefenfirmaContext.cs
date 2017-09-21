@@ -14,7 +14,6 @@ namespace Mvc.OefenfirmaCMS.Lib.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Relation> Relations { get; set; }
-        public DbSet<Relationship> Relationships { get; set; }
         public DbSet<Role> Roles { get; set; }
 
 

@@ -21,13 +21,13 @@ namespace Mvc.Oefenfirma.Web.Controllers
             //Product product = db.Products.Include(p => p.Category).SingleOrDefault(e => e.ProductId == id);
 
             //Creating Hash Password for Users
-            List<User> users = c.Users.ToList();
-            foreach (var u in users)
-            {
-                u.PasswordHash = FormsAuthentication.HashPasswordForStoringInConfigFile(u.UserPassword, "md5");
+            //List<User> users = c.Users.ToList();
+            //foreach (var u in users)
+            //{
+            //    u.PasswordHash = FormsAuthentication.HashPasswordForStoringInConfigFile(u.UserPassword, "md5");
 
-            }
-            c.SaveChanges();
+            //}
+            //c.SaveChanges();
 
             return View(vmProducts);
         }

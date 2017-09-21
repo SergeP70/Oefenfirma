@@ -48,9 +48,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.RelEmail)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.Relationship.Description)
-                </th>
+                </th>*@
 
                 <th></th>
             </tr>
@@ -73,9 +73,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.RelEmail)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.Relationship.Description)
-                    </td>
+                    </td>*@
                     <td>
                         <button type="button" class="btn btn-default" aria-label="Details" title="Details" onclick="location.href='@Url.Action("Details", new { id=item.RelationId})'">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>

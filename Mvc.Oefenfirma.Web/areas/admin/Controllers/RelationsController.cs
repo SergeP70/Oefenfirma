@@ -19,8 +19,8 @@ namespace Mvc.Oefenfirma.Web.Areas.Admin.Controllers
         // GET: Admin/Relations
         public ActionResult Index()
         {
-            var relations = db.Relations.Include(r => r.Relationship);
-            return View(relations.ToList());
+            //var relations = db.Relations.Include(r => r.Relationship);
+            return View(db.Relations.ToList());
         }
 
         // GET: Admin/Relations/Details/5
@@ -31,7 +31,8 @@ namespace Mvc.Oefenfirma.Web.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Relation relation = db.Relations.Find(id);
-            Relation relation = db.Relations.Include(r => r.Relationship).SingleOrDefault(e => e.RelationId == id);
+            // Relation relation = db.Relations.Include(r => r.Relationship).SingleOrDefault(e => e.RelationId == id);
+            Relation relation = db.Relations.SingleOrDefault(e => e.RelationId == id);
             if (relation == null)
             {
                 TempData["Success"] = "Nope";
@@ -43,7 +44,7 @@ namespace Mvc.Oefenfirma.Web.Areas.Admin.Controllers
         // GET: Admin/Relations/Create
         public ActionResult Create()
         {
-            ViewBag.RelationshipId = new SelectList(db.Relationships, "RelationshipId", "Description");
+            //ViewBag.RelationshipId = new SelectList(db.Relationships, "RelationshipId", "Description");
             return View();
         }
 
@@ -63,7 +64,7 @@ namespace Mvc.Oefenfirma.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RelationshipId = new SelectList(db.Relationships, "RelationshipId", "Description", relation.RelationshipId);
+            //ViewBag.RelationshipId = new SelectList(db.Relationships, "RelationshipId", "Description", relation.RelationshipId);
             return View(relation);
         }
 
@@ -80,7 +81,7 @@ namespace Mvc.Oefenfirma.Web.Areas.Admin.Controllers
                 TempData["Success"] = "Nope";
                 return RedirectToAction("Index");
             }
-            ViewBag.RelationshipId = new SelectList(db.Relationships, "RelationshipId", "Description", relation.RelationshipId);
+            //ViewBag.RelationshipId = new SelectList(db.Relationships, "RelationshipId", "Description", relation.RelationshipId);
             return View(relation);
         }
 
@@ -98,7 +99,7 @@ namespace Mvc.Oefenfirma.Web.Areas.Admin.Controllers
                 TempData["Success"] = "De relatie werd succesvol gewijzigd";
                 return RedirectToAction("Index");
             }
-            ViewBag.RelationshipId = new SelectList(db.Relationships, "RelationshipId", "Description", relation.RelationshipId);
+            //ViewBag.RelationshipId = new SelectList(db.Relationships, "RelationshipId", "Description", relation.RelationshipId);
             return View(relation);
         }
 
@@ -109,9 +110,9 @@ namespace Mvc.Oefenfirma.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
-            //Product product = db.Products.Include(p => p.Category).SingleOrDefault(e => e.ProductId == id);
-            Relation relation = db.Relations.Include(r => r.Relationship).SingleOrDefault(e => e.RelationId == id);
+
+            //Relation relation = db.Relations.Include(r => r.Relationship).SingleOrDefault(e => e.RelationId == id);
+            Relation relation = db.Relations.SingleOrDefault(e => e.RelationId == id);
             if (relation == null)
             {
                 TempData["Success"] = "Nope";
