@@ -10,6 +10,13 @@ namespace Mvc.OefenfirmaCMS.Lib.Entities
 {
     public class User
     {
+        // We need to add a constructor to User that initializes the Roles collection. 
+        // Auto properties simplifies a backing variable but does not initialize it
+        public User()
+        {
+            this.Roles = new List<Role>();
+        }
+
         [Key]
         public int UserId { get; set; }
 

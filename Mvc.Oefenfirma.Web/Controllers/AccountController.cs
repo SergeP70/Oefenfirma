@@ -16,11 +16,12 @@ namespace Mvc.Oefenfirma.Web.Controllers
     public class AccountController : Controller
     {
         UsersRepository usersRepository;
+        OefenfirmaContext db;
 
         public AccountController()
         {
-            OefenfirmaContext context = new OefenfirmaContext();
-            usersRepository = new UsersRepository(context); 
+            db = new OefenfirmaContext();
+            usersRepository = new UsersRepository(db); 
         }
 
 
@@ -98,8 +99,7 @@ namespace Mvc.Oefenfirma.Web.Controllers
         // GET: Account/Register
         public ActionResult Register()
         {
-            ContactFormVM model = new ContactFormVM();
-            return View(model);
+            return View();
         }
 
         // POST: Account/Register
@@ -107,21 +107,29 @@ namespace Mvc.Oefenfirma.Web.Controllers
         // de naam vd variabelen moeten identiek zijn aan die in de form
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(ContactFormVM model)
+        public ActionResult Register([Bind(Include = "UserId,UserName,UserPassword,ConfirmPassword,UserFirstName,UserLastName,UserAddress,UserPost,UserGemeente,UserEmail,UserPhone,Birthday")] User user)
         {
             // Modelstate not valid? See errors:
             var errors = ModelState.Values.SelectMany(v => v.Errors);
 
             if (ModelState.IsValid)
             {
+                // Aanmaak Hash-paswoord en Role als klant:
+                user.PasswordHash = FormsAuthentication.HashPasswordForStoringInConfigFile(user.UserPassword, "md5");
+                Role userRole = db.Roles.FirstOrDefault(r => r.RoleName == "Klant");
+                user.Roles.Add(userRole);
+                db.Users.Add(user);
+                db.SaveChanges();
+
+
                 // Aanmaak van de email 
-                string body = "<p>Beste,</br></p><p>U kreeg een nieuwe registratieaanvraag vanwege {0} {1}.</br></p><p>TEL / GSM: {2} en Email: {3}.</p><p><u>Boodschap:</u></br></p><p>{4}</p><p></br>Met vriendelijke groeten,</br></p><p>Uw webmaster</p>";
+                string body = "<p>Beste {0},</br></p><p>Bedankt voor uw registratieaanvraag! U kan meteen aan de slag.</p><p><u>Gegevens:</u></br></p><p>Naam: {0} {1}.</p><p>TEL / GSM: {2} </p><p>Email: {3}.</p><p>Adres: {4}</p><p></br>Met vriendelijke groeten,</br></p><p>Uw webmaster</p>";
                 var message = new MailMessage();
                 message.To.Add(new MailAddress("sergepille@hotmail.com"));
                 message.To.Add(new MailAddress("serge.pille@telenet.be"));
                 message.To.Add(new MailAddress("docs.ivo@gmail.com"));
                 message.Subject = string.Format("Nieuwe registratie-aanvraag van website Ivo Bytes");
-                message.Body = string.Format(body, model.RelFirstName, model.RelName, model.RelPhone, model.RelEmail, model.Message);
+                message.Body = string.Format(body, user.UserFirstName, user.UserLastName, user.UserPhone, user.UserEmail, user.UserAddress);
                 message.IsBodyHtml = true;
 
                 // Versturen van de mail via smtpClient => configuratie in web.config
