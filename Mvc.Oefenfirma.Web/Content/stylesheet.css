@@ -150,6 +150,16 @@ input.form-fixer {
     color: #eef1f7;
 }
 
+/*********************************
+    USERS
+**********************************/
+
+.form-group.required .control-label:after {
+    font-size: 18px;
+    margin-left: 5px;
+    content: "*";
+    color: red;
+}
 
 /* TO DO ***************************
   .navbar-default {

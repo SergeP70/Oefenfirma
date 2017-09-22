@@ -24,9 +24,9 @@ namespace Mvc.OefenfirmaCMS.Lib.Entities
         public string RelAdress { get; set; }
 
         [Display(Name = "Postnummer")]
-        [Range(1000,9999, ErrorMessage ="Postnummer ligt tussen 1000 en 9999")]
         [RegularExpression(@"^[1-9]{1}[0-9]{3}$", ErrorMessage = "Postnummer is niet geldig")]
-        public int RelPost{ get; set; }
+        [StringLength(4)]
+        public string RelPost{ get; set; }
 
         [Display(Name = "Gemeente")]
         [StringLength(50, ErrorMessage = "De {0} mag maximum 50 karakters lang zijn")]

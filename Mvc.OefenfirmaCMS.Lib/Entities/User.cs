@@ -26,10 +26,11 @@ namespace Mvc.OefenfirmaCMS.Lib.Entities
 
         public string PasswordHash { get; set; }
 
-        //[Display(Name = "Bevestig paswoord")]
-        //[DataType(DataType.Password)]
-        //[Compare("UserPassword", ErrorMessage = "De bevestiging komt niet overeen met het paswoord")]
-        //public string ConfirmPassword { get; set; }
+        [NotMapped]
+        [Display(Name = "Bevestig paswoord")]
+        [DataType(DataType.Password)]
+        [Compare("UserPassword", ErrorMessage = "De bevestiging komt niet overeen met het paswoord")]
+        public string ConfirmPassword { get; set; }
 
         [Display(Name = "E-mailadres")]
         [DataType(DataType.EmailAddress)]
@@ -50,9 +51,9 @@ namespace Mvc.OefenfirmaCMS.Lib.Entities
         public string UserAddress { get; set; }
 
         [Display(Name = "Postnummer")]
-        [Range(1000, 9999, ErrorMessage = "Postnummer ligt tussen 1000 en 9999")]
         [RegularExpression(@"^[1-9]{1}[0-9]{3}$", ErrorMessage = "Postnummer is niet geldig")]
-        public int UserPost { get; set; }
+        [StringLength(4)]
+        public string UserPost { get; set; }
 
         [Display(Name = "Gemeente")]
         [StringLength(50, ErrorMessage = "De {0} mag maximum 50 karakters lang zijn")]
@@ -67,9 +68,8 @@ namespace Mvc.OefenfirmaCMS.Lib.Entities
         [Display(Name = "Geboortedatum")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
 
         public ICollection<Role> Roles { get; set; }
-        
     }
 }
