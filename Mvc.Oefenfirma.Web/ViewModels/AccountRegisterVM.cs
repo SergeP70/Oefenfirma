@@ -1,43 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace Mvc.OefenfirmaCMS.Lib.Entities
+namespace Mvc.Oefenfirma.Web.ViewModels
 {
-    public class User
+    public class AccountRegisterVM
     {
-        // We need to add a constructor to User that initializes the Roles collection. 
-        // Auto properties simplifies a backing variable but does not initialize it
-        public User()
-        {
-            this.Roles = new List<Role>();
-        }
-
-        [Key]
-        public int UserId { get; set; }
-
-        [Display(Name ="Gebruikersnaam")]
+        [Display(Name = "Gebruikersnaam")]
         [Required(ErrorMessage = "Gelieve de {0} in te vullen")]
         [StringLength(30, ErrorMessage = "De {0} moet tussen 6 en 30 karakters lang zijn", MinimumLength = 6)]
         public string UserName { get; set; }
 
-        [Display(Name ="Paswoord")]
+        [Display(Name = "Paswoord")]
         [Required(ErrorMessage = "Gelieve het {0} in te vullen")]
         [StringLength(12, ErrorMessage = "Het {0} moet tussen 5 en 30 karakters lang zijn", MinimumLength = 5)]
         [DataType(DataType.Password)]
         public string UserPassword { get; set; }
 
-        public string PasswordHash { get; set; }
-
-        //[NotMapped]
-        //[Display(Name = "Bevestig paswoord")]
-        //[DataType(DataType.Password)]
-        //[Compare("UserPassword", ErrorMessage = "De bevestiging komt niet overeen met het paswoord")]
-        //public string ConfirmPassword { get; set; }
+        [Display(Name = "Bevestig paswoord")]
+        [DataType(DataType.Password)]
+        [Compare("UserPassword", ErrorMessage = "De bevestiging komt niet overeen met het paswoord")]
+        public string ConfirmPassword { get; set; }
 
         [Display(Name = "E-mailadres")]
         [DataType(DataType.EmailAddress)]
@@ -77,6 +62,5 @@ namespace Mvc.OefenfirmaCMS.Lib.Entities
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Birthday { get; set; }
 
-        public ICollection<Role> Roles { get; set; }
     }
 }

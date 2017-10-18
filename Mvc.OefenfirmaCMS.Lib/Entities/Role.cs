@@ -8,6 +8,11 @@ namespace Mvc.OefenfirmaCMS.Lib.Entities
 {
     public class Role
     {
+        public Role()
+        {
+            this.Users = new List<User>();
+        }
+
         public int RoleId { get; set; }
         public string RoleName { get; set; }
 

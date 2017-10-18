@@ -16,7 +16,7 @@
                 @Html.LabelFor(m => m.UserName)
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName, new { autofocus="autofocus" })
                 @Html.ValidationMessageFor(model => model.UserName)
             </div>
             <div class="editor-label">
@@ -27,8 +27,8 @@
                 @Html.ValidationMessageFor(m => m.Password)
             </div>
 
-            <div class="editor-field">
-                @Html.CheckBoxFor(m => m.RememberMe) Onthou mij!
+            <div class="checkbox">
+                @Html.CheckBoxFor(m => m.RememberMe)<span class="CheckboxSpanText">Onthou mij!</span>
             </div>
             <div>
                 <input type="submit" value="Aanmelden" />

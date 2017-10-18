@@ -1,51 +1,92 @@
-﻿@model Mvc.OefenfirmaCMS.Lib.Entities.User
+﻿@*@model Mvc.OefenfirmaCMS.Lib.Entities.User*@
+@model Mvc.Oefenfirma.Web.ViewModels.CartIndexVM 
 
 @{
     ViewBag.Title = "Oefenfirma: Checkout";
 }
 
-<h2>Check out now</h2>
-<p>Please enter your details, and we'll ship your goods right away!</p>
-@using (Html.BeginForm())
-{
-    <h3>Ship to</h3>
-    <div class="form-group">
-        <label>Voornaam:</label>
-        @Html.TextBoxFor(x => x.Relation.RelFirstName, new { @class = "form-control" })
+<h2>Bevestiging</h2>
+<p>Controleer nog even uw adresgegevens, we sturen uw goederen meteen op!</p>
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm())
+        {
+            <h3>Ship to</h3>
+            <div class="form-group">
+                <label>Voornaam:</label>
+                @Html.TextBoxFor(u => u.User.UserFirstName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Familienaam:</label>
+                @Html.TextBoxFor(u => u.User.UserLastName, new { @class = "form-control" })
+            </div>
+            <h3>Address</h3>
+            <div class="form-group">
+                <label>Adres:</label>
+                @Html.TextBoxFor(u => u.User.UserAddress, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Adres lijn 2:</label>
+                <input class="form-control" id="Adreslijn2" name="Adreslijn2" value="" type="text">
+            </div>
+            <div class="form-group">
+                <label>Postcode:</label>
+                @Html.TextBoxFor(u => u.User.UserPost, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Gemeente:</label>
+                @Html.TextBoxFor(u => u.User.UserGemeente, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Tel/GSM:</label>
+                @Html.TextBoxFor(u => u.User.UserPhone, new { @class = "form-control" })
+            </div>
+        }
     </div>
-    <div class="form-group">
-        <label>Familienaam:</label>
-        @Html.TextBoxFor(x => x.Relation.RelName, new { @class = "form-control" })
+    <div class="col-md-8">
+        <h3>Résumé</h3>
+        <table id="cartTable" class="table info">
+            <thead>
+                <tr class="warning">
+                    <th>Quantity</th>
+                    <th>Item</th>
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var line in Model.Cart.Lines)
+            {
+                    <tr>
+                        <td class="text-center">@line.Quantity</td>
+                        <td class="text-left">@line.Product.ProductName</td>
+                        <td class="text-right">@line.Product.Price.ToString("c")</td>
+                        <td class="text-right">
+                            @((line.Quantity * line.Product.Price).ToString("c"))
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td class="text-right">
+                        @Model.Cart.ComputeTotalValue().ToString("c")
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <h3>Options</h3>
+        <div class="checkbox">
+            <label class="checkbox">
+                <input type="checkbox" value="gift">
+                <span class="CheckboxSpanText">Geschenkverpakking</span>
+            </label>
+        </div>
     </div>
-    <h3>Address</h3>
-    <div class="form-group">
-        <label>Adres:</label>
-        @Html.TextBoxFor(x => x.Relation.RelAdress, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        <label>Adres lijn 2:</label>
-        <input class="form-control" id="Adreslijn2" name="Adreslijn2" value="" type="text">
-    </div>
-    <div class="form-group">
-        <label>Postcode:</label>
-        @Html.TextBoxFor(x => x.Relation.RelPost, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        <label>Gemeente:</label>
-        @Html.TextBoxFor(x => x.Relation.RelGemeente, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        <label>Mobiel:</label>
-        @Html.TextBoxFor(x => x.Relation.RelPhone, new { @class = "form-control" })
-    </div>
-    <h3>Options</h3>
-    <div class="checkbox">
-        <label>
-            @*@Html.EditorFor(x => x.GiftWrap)*@
-            Gift wrap these items
-        </label>
-    </div>
+</div>
+<div class="row">
     <div class="text-center">
-        <input class="btn btn-primary" type="submit" value="Complete order" />
+        <input class="btn btn-primary" type="submit" value="Bevestig" />
     </div>
-}
+</div>

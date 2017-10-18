@@ -47,16 +47,13 @@
                     @Html.DisplayNameFor(model => model.UserAddress)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.UserPost)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.UserGemeente)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.UserPhone)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Birthday)
+                    @Html.DisplayNameFor(model => model.Roles)
                 </th>
                 <th></th>
             </tr>
@@ -80,9 +77,6 @@
                         @Html.DisplayFor(modelItem => item.UserAddress)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.UserPost)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.UserGemeente)
                     </td>
 
@@ -90,7 +84,11 @@
                         @Html.DisplayFor(modelItem => item.UserPhone)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Birthday)
+                        @foreach (var rol in item.Roles)
+                        {
+                            @Html.DisplayFor(modelRol => rol.RoleName)<br />
+                        }
+                        @* Html.ListBox("Id", new SelectList(item.Roles,"RoleId","RoleName"))*@
                     </td>
                     <td>
                         <button type="button" class="btn btn-default" aria-label="Details" title="Details" onclick="location.href='@Url.Action("Details", new { id = item.UserId })'">

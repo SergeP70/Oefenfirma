@@ -60,11 +60,11 @@
     Wanneer er geen user ingelogd is:  *@ 
     @if (@Model.User != null)
     {
-        @Html.ActionLink("Checkout now", "Checkout", new { userId = @Model.User.UserId }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Checkout now", "Checkout", new { userId = @Model.User.UserId, cart = Model.Cart }, new { @class = "btn btn-primary" })
     }
     else
     {
-        @Html.ActionLink("Checkout now", "Checkout", new { userId = 11}, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Checkout now", "Checkout", new { userId = 11, cart = Model.Cart}, new { @class = "btn btn-primary" })
     }
 </div>
 

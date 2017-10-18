@@ -48,9 +48,12 @@ textarea {
 /* Put my checkbox aligned normal */
 input[type="checkbox"] {
     margin-left: 0px !important;
-
+    /* was 0px */
 }
 
+.CheckboxSpanText {
+    margin-left: 20px;
+}
 
 .jumbotron {
     padding-left: 40px;

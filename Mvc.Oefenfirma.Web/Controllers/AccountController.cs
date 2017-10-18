@@ -107,20 +107,30 @@ namespace Mvc.Oefenfirma.Web.Controllers
         // de naam vd variabelen moeten identiek zijn aan die in de form
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "UserId,UserName,UserPassword,ConfirmPassword,UserFirstName,UserLastName,UserAddress,UserPost,UserGemeente,UserEmail,UserPhone,Birthday")] User user)
+        public ActionResult Register(AccountRegisterVM model)
         {
-            // Modelstate not valid? See errors:
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            User user = new User();
 
             if (ModelState.IsValid)
             {
+                // Mapping ViewModel => entity
+                user.UserName = model.UserName;
+                user.UserPassword = model.UserPassword;
+                user.UserName = model.UserName;
+                user.UserEmail = model.UserEmail;
+                user.Birthday = model.Birthday;
+                user.UserLastName = model.UserLastName;
+                user.UserFirstName = model.UserFirstName;
+                user.UserAddress = model.UserAddress;
+                user.UserPost = model.UserPost;
+                user.UserGemeente = model.UserGemeente;
+                user.UserPhone = model.UserPhone;
                 // Aanmaak Hash-paswoord en Role als klant:
                 user.PasswordHash = FormsAuthentication.HashPasswordForStoringInConfigFile(user.UserPassword, "md5");
                 Role userRole = db.Roles.FirstOrDefault(r => r.RoleName == "Klant");
                 user.Roles.Add(userRole);
                 db.Users.Add(user);
                 db.SaveChanges();
-
 
                 // Aanmaak van de email 
                 string body = "<p>Beste {0},</br></p><p>Bedankt voor uw registratieaanvraag! U kan meteen aan de slag.</p><p><u>Gegevens:</u></br></p><p>Naam: {0} {1}.</p><p>TEL / GSM: {2} </p><p>Email: {3}.</p><p>Adres: {4}</p><p></br>Met vriendelijke groeten,</br></p><p>Uw webmaster</p>";
@@ -139,13 +149,12 @@ namespace Mvc.Oefenfirma.Web.Controllers
                 // Gebruik van Tempdata om Indexpagina te voorzien met een melding wanneer mail gestuurd werd.
                 TempData["Success"] = "Bedankt voor uw registratie! We nemen snel contact met u op.";
 
-                return RedirectToAction("Register");
+                return RedirectToAction("Index","Home");
             }
-
+            // Modelstate not valid? See errors:
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
             return View();
         }
-
-
 
 
         public ActionResult Logout()

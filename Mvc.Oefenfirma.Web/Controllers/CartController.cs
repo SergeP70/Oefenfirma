@@ -51,10 +51,82 @@ namespace Mvc.Oefenfirma.Web.Controllers
             return PartialView(cart);
         }
 
-        public ViewResult Checkout(int? userId)
+        //public ViewResult Checkout(int? userId)
+        //{
+        //    User user = db.Users.FirstOrDefault(u => u.UserId == userId);
+        //    return View(user);
+        //}
+
+        // GET: Cart/Checkout
+        public ViewResult Checkout(int? userId, ShoppingCart cart)
         {
             User user = db.Users.FirstOrDefault(u => u.UserId == userId);
-            return View(user);
+
+            CartIndexVM cartIndexVM = new CartIndexVM
+            {
+                Cart = cart,
+                ReturnUrl = null,
+                User = db.Users.Where(u => u.UserId == userId).FirstOrDefault()
+            };
+
+            return View(cartIndexVM);
         }
+
+        // POST: Cart/Checkout
+        // Ontvang de gegevens uit de form van de View en 
+        // sla ze op in de database Orders & OrderDetails
+        // en stuur ze door per mail
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(CartIndexVM model)
+        {
+            User user = new User();
+
+            if (ModelState.IsValid)
+            {
+                // Mapping ViewModel => entity
+                //user.UserName = model.UserName;
+                //user.UserPassword = model.UserPassword;
+                //user.UserName = model.UserName;
+                //user.UserEmail = model.UserEmail;
+                //user.Birthday = model.Birthday;
+                //user.UserLastName = model.UserLastName;
+                //user.UserFirstName = model.UserFirstName;
+                //user.UserAddress = model.UserAddress;
+                //user.UserPost = model.UserPost;
+                //user.UserGemeente = model.UserGemeente;
+                //user.UserPhone = model.UserPhone;
+                // Aanmaak Hash-paswoord en Role als klant:
+                //user.PasswordHash = FormsAuthentication.HashPasswordForStoringInConfigFile(user.UserPassword, "md5");
+                //Role userRole = db.Roles.FirstOrDefault(r => r.RoleName == "Klant");
+                //user.Roles.Add(userRole);
+                //db.Users.Add(user);
+                //db.SaveChanges();
+
+                // Aanmaak van de email 
+                //string body = "<p>Beste {0},</br></p><p>Bedankt voor uw registratieaanvraag! U kan meteen aan de slag.</p><p><u>Gegevens:</u></br></p><p>Naam: {0} {1}.</p><p>TEL / GSM: {2} </p><p>Email: {3}.</p><p>Adres: {4}</p><p></br>Met vriendelijke groeten,</br></p><p>Uw webmaster</p>";
+                //var message = new MailMessage();
+                //message.To.Add(new MailAddress("sergepille@hotmail.com"));
+                //message.To.Add(new MailAddress("serge.pille@telenet.be"));
+                //message.To.Add(new MailAddress("docs.ivo@gmail.com"));
+                //message.Subject = string.Format("Nieuwe registratie-aanvraag van website Ivo Bytes");
+                //message.Body = string.Format(body, user.UserFirstName, user.UserLastName, user.UserPhone, user.UserEmail, user.UserAddress);
+                //message.IsBodyHtml = true;
+
+                // Versturen van de mail via smtpClient => configuratie in web.config
+                //SmtpClient smtp = new SmtpClient();
+                //smtp.Send(message);
+
+                // Gebruik van Tempdata om Indexpagina te voorzien met een melding wanneer mail gestuurd werd.
+                //TempData["Success"] = "Bedankt voor uw registratie! We nemen snel contact met u op.";
+
+                return RedirectToAction("Index", "Home");
+            }
+            // Modelstate not valid? See errors:
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            return View();
+        }
+
+
     }
 }

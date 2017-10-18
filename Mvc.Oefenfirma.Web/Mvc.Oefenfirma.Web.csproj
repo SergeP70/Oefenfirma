@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -247,6 +248,7 @@
     <Compile Include="Areas\Admin\Controllers\RelationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RelationshipsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Test.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CatController.cs" />
@@ -259,6 +261,7 @@
     <Compile Include="Models\CartModelBinder.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\PagingHelpers.cs" />
+    <Compile Include="ViewModels\AccountRegisterVM.cs" />
     <Compile Include="ViewModels\CartIndexVM.cs" />
     <Compile Include="ViewModels\ContactFormVM.cs" />
     <Compile Include="Models\ImageHelper.cs" />
@@ -266,6 +269,7 @@
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="ViewModels\ProductListIndexVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\UserRolesVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
